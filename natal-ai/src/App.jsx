@@ -955,7 +955,7 @@ export default function App(){
   const doReading=async()=>{
     setReadLoad(true);setReadErr('');
     try{
-      setReading(await callAI([{role:'user',content:`You are a deeply wise Vedic astrologer named Acharya Adi Yogi writing a personal reading for a Western/US audience. Speak in plain English — no Sanskrit terms. Chart:\n${buildCtx()}\n\nWrite a personal, warm reading structured as a journey through time:\n## Your Past — The Story That Shaped You (based on birth chart and early cycle patterns)\n## Your Present — What Is Unfolding Right Now (current major life cycle in 2026 and what it means practically)\n## Your Natural Strengths (2-3 key gifts from the chart)\n## Your Challenges — Where You Are Being Tested\n## Career & Life Purpose\n## Love & Relationships\n## Your Future — What Is Coming (upcoming cycles and opportunities, next 3-5 years)\n## How to Work With Your Chart (1-2 specific practical suggestions)\n## A Personal Message\n\nRules: use ## for each heading, max 3 short sentences per section, speak directly using you/your, give one specific insight per section, warm wise tone. No jargon — translate everything to plain English.`}]));
+      setReading(await callAI([{role:'user',content:`You are Acharya Adi Yogi, a warm wise Vedic astrologer. Write a personal reading. Plain English only — no Sanskrit. Chart:\n${buildCtx()}\n\nFour rules for every section: (1) Patterns not predictions — describe tendencies not fixed events. (2) Self not others — only describe what this person may experience, never what partners or family will do. (3) Use phrases like traditionally associated with or may tend toward. (4) Offer insight not instructions.\n\nTone: warm, intelligent, specific. Like a wise friend who reads charts. Never use dramatic words like destined, doom, or calamity.\n\nStructure — ## heading, max 3 short sentences per section:\n## The Story That Shaped You\n## What Is Unfolding Right Now\n## Your Natural Strengths\n## Where You May Face Resistance\n## Career and Purpose\n## Love and Connection\n## What Is Coming\n## One Practice That May Help\n## A Personal Message`}]));
     }catch(e){setReadErr('Could not generate reading. Please check your connection.');}
     setReadLoad(false);
   };
@@ -984,7 +984,7 @@ export default function App(){
     setMsgs(m=>[...m,{role:'user',content:text}]);
     setChatInput('');setChatLoad(true);
     try{
-      const reply=await callAI([{role:'user',content:`You are Acharya Adi Yogi, a warm wise Vedic astrologer for a Western audience. Chart:\n${buildCtx()}\n\nRules: max 3-4 short sentences, plain English (no Sanskrit), speak directly using you/your, warm like a trusted friend, practical and specific.`},{role:'assistant',content:'Hello! I am here to guide you.'}, ...newMsgs],400);
+      const reply=await callAI([{role:'user',content:`You are Acharya Adi Yogi, a warm wise Vedic astrologer. Plain English only — no Sanskrit. Chart:\n${buildCtx()}\n\nRules: max 3-4 short sentences. Speak as patterns not predictions (say traditionally associated with, may tend toward). Never describe what other people will do — only what this person may experience. Warm, specific, like a wise friend. No dramatic language.`},{role:'assistant',content:'Hello! I am here to guide you.'}, ...newMsgs],400);
       setMsgs(m=>[...m,{role:'assistant',content:reply}]);
     }catch{setMsgs(m=>[...m,{role:'assistant',content:'I had trouble connecting. Please try again.'}]);}
     setChatLoad(false);
@@ -1035,7 +1035,7 @@ export default function App(){
 
     return(<>
       <div className="screen-hdr">
-        <div className="screen-title">{f.name?`${f.name}'s Chart`:'Your Natal Chart'}</div>
+        <div className="screen-title">{f.name?`${f.name} — Natal Chart`:'Your Natal Chart'}</div>
         <div className="screen-action" onClick={()=>{setChart(null);setNav('home');setShowForm(true);}}>Edit</div>
       </div>
       <div className="snap-bar">
@@ -1261,51 +1261,9 @@ export default function App(){
     </>);
   };
 
-  const ReadingScreen=()=>(<>
-    <div className="screen-hdr"><div className="screen-title">Your Personal Reading</div></div>
-    {!chart?(<div className="wrap"><div className="empty"><span className="empty-icon">✦</span><div className="empty-title">Enter your birth details first</div><div className="empty-desc">Go to Home and calculate your birth chart to get a personal reading.</div></div><button className="btn-ghost" style={{margin:'0 16px',width:'calc(100% - 32px)'}} onClick={()=>{setNav('home');setShowForm(true);}}>Enter birth details →</button></div>):(
-      <div className="wrap" style={{paddingTop:4}}>
-        {readLoad?<Loader text="Acharya Adi Yogi is reading your chart..." sub="This takes about 15 seconds"/>:reading?<ReadingText text={reading}/>:(
-          <><div className="card" style={{textAlign:'center',marginBottom:16}}>
-            <div style={{fontSize:32,marginBottom:8}}>✦</div>
-            <div style={{fontSize:16,fontWeight:600,color:'var(--purple2)',marginBottom:6}}>Your Complete Reading</div>
-            <div style={{fontSize:13,color:'var(--muted)',lineHeight:1.6,marginBottom:16}}>A personal journey through your past, present and future — based on the exact positions of the planets at your birth.</div>
-            <button className="btn-cta" style={{margin:0}} onClick={doReading}><span>✦</span>Generate My Reading</button>
-          </div></>
-        )}
-        {readErr&&<div style={{color:'var(--red)',fontSize:13,padding:'10px 12px',background:'var(--rbg)',borderRadius:8,border:'1px solid var(--rbc)',marginBottom:12}}>{readErr}</div>}
-        {reading&&<button className="btn-ghost" style={{width:'100%',marginTop:8}} onClick={doReading}>Regenerate reading ↺</button>}
-      </div>
-    )}
-  </>);
 
-  const ChatScreen=()=>(<>
-    <div className="screen-hdr"><div className="screen-title">Ask Your Guide</div></div>
-    {!chart?(<div className="wrap"><div className="empty"><span className="empty-icon">✧</span><div className="empty-title">Enter your birth details first</div><div className="empty-desc">Your birth chart needs to be loaded for Acharya Adi Yogi to give you personal guidance.</div></div><button className="btn-ghost" style={{margin:'0 16px',width:'calc(100% - 32px)'}} onClick={()=>{setNav('home');setShowForm(true);}}>Enter birth details →</button></div>):(
-      <div className="chat-wrap">
-        <div className="chat-msgs">
-          {msgs.length===0&&(<div style={{textAlign:'center',padding:'20px 10px'}}>
-            <div style={{fontSize:28,marginBottom:8}}>✧</div>
-            <div style={{fontSize:14,fontWeight:500,color:'var(--purple2)',marginBottom:4}}>Acharya Adi Yogi</div>
-            <div style={{fontSize:13,color:'var(--muted)',lineHeight:1.6}}>Ask anything about your birth chart. I will give you a straight answer.</div>
-          </div>)}
-          <div className="chat-suggs">{CHAT_SUGGS.map((s,i)=><div key={i} className="sg" onClick={()=>sendChat(s)}>{s}</div>)}</div>
-          {msgs.map((m,i)=>(
-            <div key={i} className={`cm ${m.role==='user'?'u':'a'}`}>
-              <div className="cm-label">{m.role==='user'?'You':'Acharya Adi Yogi'}</div>
-              <div className="cm-bubble">{m.content}</div>
-            </div>
-          ))}
-          {chatLoad&&<div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>}
-          <div ref={msgsEndRef}/>
-        </div>
-        <div className="chat-input-row">
-          <textarea className="chat-inp" rows={1} placeholder="Ask about your chart..." value={chatInput} onChange={e=>setChatInput(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat(chatInput);}}}/>
-          <button className="chat-send" onClick={()=>sendChat(chatInput)} disabled={chatLoad}>→</button>
-        </div>
-      </div>
-    )}
-  </>);
+
+
 
   const CompatScreen=()=>{
     const setF1=(k,v)=>scf(p=>({...p,[k]:v}));
@@ -1450,8 +1408,55 @@ export default function App(){
         </div>
       </>)}
       {nav==='chart'&&<ChartScreen/>}
-      {nav==='reading'&&<ReadingScreen/>}
-      {nav==='chat'&&<ChatScreen/>}
+      {nav==='reading'&&(<>
+        <div className="screen-hdr"><div className="screen-title">Your Personal Reading</div></div>
+        {!chart?(<div className="wrap"><div className="empty"><span className="empty-icon">✦</span><div className="empty-title">Enter your birth details first</div><div className="empty-desc">Go to Home and calculate your birth chart to get a personal reading.</div></div><button className="btn-ghost" style={{margin:'0 16px',width:'calc(100% - 32px)'}} onClick={()=>{setNav('home');setShowForm(true);}}>Enter birth details →</button></div>):(
+          <div className="wrap" style={{paddingTop:4}}>
+            <div className="card" style={{background:'var(--purpleXL)',border:'1px solid var(--purpleBorder)',borderRadius:12,padding:'10px 14px',marginBottom:14,fontSize:12,color:'var(--purple2)',lineHeight:1.6}}>
+              ✦ For entertainment and self-reflection only. Not a substitute for professional advice.
+            </div>
+            {readLoad?<Loader text="Reading your chart..." sub="Takes about 15 seconds"/>:reading?<><ReadingText text={reading}/><button className="btn-ghost" style={{width:'100%',marginTop:8}} onClick={doReading}>Regenerate ↺</button></>:(
+              <div className="card" style={{textAlign:'center',marginBottom:16}}>
+                <div style={{fontSize:32,marginBottom:8}}>✦</div>
+                <div style={{fontSize:16,fontWeight:600,color:'var(--purple2)',marginBottom:6}}>Your Complete Reading</div>
+                <div style={{fontSize:13,color:'var(--muted)',lineHeight:1.6,marginBottom:16}}>Your past, present and future — based on the exact positions of the planets at your birth.</div>
+                <button className="btn-cta" style={{margin:0}} onClick={doReading}><span>✦</span>Generate My Reading</button>
+              </div>
+            )}
+            {readErr&&<div style={{color:'var(--red)',fontSize:13,padding:'10px 12px',background:'var(--rbg)',borderRadius:8,border:'1px solid var(--rbc)',marginBottom:12}}>{readErr}</div>}
+          </div>
+        )}
+      </>)}
+      {nav==='chat'&&(<>
+        <div className="screen-hdr"><div className="screen-title">Ask Your Guide</div></div>
+        {!chart?(<div className="wrap"><div className="empty"><span className="empty-icon">✧</span><div className="empty-title">Enter your birth details first</div><div className="empty-desc">Your birth chart needs to be loaded to give you personal guidance.</div></div><button className="btn-ghost" style={{margin:'0 16px',width:'calc(100% - 32px)'}} onClick={()=>{setNav('home');setShowForm(true);}}>Enter birth details →</button></div>):(
+          <div className="chat-wrap">
+            <div className="chat-msgs">
+              {msgs.length===0&&(<div style={{textAlign:'center',padding:'20px 10px'}}>
+                <div style={{fontSize:28,marginBottom:8}}>✧</div>
+                <div style={{fontSize:14,fontWeight:500,color:'var(--purple2)',marginBottom:4}}>Acharya Adi Yogi</div>
+                <div style={{fontSize:12,color:'var(--muted)',lineHeight:1.6,marginBottom:8}}>Your chart is loaded. Ask me anything.</div>
+                <div style={{fontSize:11,color:'var(--hint)'}}>For self-reflection only · Not professional advice</div>
+              </div>)}
+              <div className="chat-suggs">{CHAT_SUGGS.map((s,i)=><div key={i} className="sg" onClick={()=>sendChat(s)}>{s}</div>)}</div>
+              {msgs.map((m,i)=>(
+                <div key={i} className={`cm ${m.role==='user'?'u':'a'}`}>
+                  <div className="cm-label">{m.role==='user'?'You':'Acharya Adi Yogi'}</div>
+                  <div className="cm-bubble">{m.content}</div>
+                </div>
+              ))}
+              {chatLoad&&<div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>}
+              <div ref={msgsEndRef}/>
+            </div>
+            <div className="chat-input-row">
+              <textarea className="chat-inp" rows={1} placeholder="Ask about your chart..." value={chatInput}
+                onChange={e=>setChatInput(e.target.value)}
+                onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat(chatInput);}}}/>
+              <button className="chat-send" onClick={()=>sendChat(chatInput)} disabled={chatLoad}>→</button>
+            </div>
+          </div>
+        )}
+      </>)}
       {nav==='more'&&<MoreScreen/>}
       <div className="bnav">
         <div className={`bn${nav==='home'?' act':''}`} onClick={()=>setNav('home')}><span className="bn-icon">⌂</span><span className="bn-label">Home</span></div>

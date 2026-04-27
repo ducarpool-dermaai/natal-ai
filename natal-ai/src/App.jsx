@@ -1028,41 +1028,7 @@ export default function App(){
 
   // ── SCREENS ──
 
-  const HomeScreen=()=>(<>
-    <div className="hdr">
-      <span className="hdr-icon">✦</span>
-      <div className="hdr-title">Natal AI</div>
-      <div className="hdr-sub">Vedic Astrology · Ancient Wisdom</div>
-    </div>
-    <div className="hist">
-      <span className="hist-icon">📜</span>
-      <span className="hist-text">Vedic astrology is a 5,000-year science of self-discovery from ancient India. Your birth chart is a precise map of your soul's journey — calculated to the minute using Swiss Ephemeris.</span>
-    </div>
-    <div className="wrap">
-      {!chart?(<>
-        <button className="btn-cta" onClick={()=>setShowForm(true)}><span className="btn-cta-icon">✦</span>Discover your birth chart</button>
-        {showForm&&<BirthForm formData={f} setFormData={sf} onSubmit={castChart} loading={casting} error={castErr} geoL={geoLoad} placeRes={placeResults} setPlaceRes={setPlaceResults}/>}
-      </>):(
-        <button className="btn-cta" onClick={()=>{setNav('chart');setChartTab('chart');}}><span className="btn-cta-icon">✦</span>View your birth chart</button>
-      )}
-      {panchang&&<div className="today">
-        <div className="today-lbl">Today's Cosmic Energy · Apr 13, 2026</div>
-        <div className="today-row">
-          <div className="today-item"><div className="tv">{panchang.moonPhase?.split('·')[0].trim()}</div><div className="tk">Moon Phase</div></div>
-          <div className="today-item"><div className="tv">{panchang.nakName}</div><div className="tk">Lunar Mansion</div></div>
-          <div className="today-item"><div className="tv">{panchang.rahuWindow.split('–')[0].trim()}</div><div className="tk">Shadow Window</div></div>
-        </div>
-      </div>}
-      <div className="feat-grid">
-        <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('chart');}else setShowForm(true)}}><span className="fc-icon">✦</span><div className="fc-name">Birth Chart</div><div className="fc-desc">Sidereal · Vedic</div></div>
-        <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('cycles');}else setShowForm(true)}}><span className="fc-icon">⏳</span><div className="fc-name">Life Cycles</div><div className="fc-desc">Your current period</div></div>
-        <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('influences');}else setShowForm(true)}}><span className="fc-icon">◎</span><div className="fc-name">Influences</div><div className="fc-desc">Planetary patterns</div></div>
-        <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('gifts');}else setShowForm(true)}}><span className="fc-icon">★</span><div className="fc-name">Cosmic Gifts</div><div className="fc-desc">Your strengths</div></div>
-        <div className="fc" onClick={()=>{setNav('more');setMoreScreen('compat');}}><span className="fc-icon">♡</span><div className="fc-name">Compatibility</div><div className="fc-desc">Partner or friend</div></div>
-        <div className="fc hi" onClick={()=>setNav('chat')}><span className="fc-icon">✧</span><div className="fc-name">Ask a Question</div><div className="fc-desc">Chat with your guide</div></div>
-      </div>
-    </div>
-  </>);
+
 
   const ChartScreen=()=>{
     if(!chart)return(<div className="wrap"><div className="empty"><span className="empty-icon">✦</span><div className="empty-title">No chart yet</div><div className="empty-desc">Go to Home and enter your birth details to generate your natal chart.</div></div><button className="btn-ghost" style={{margin:'0 16px',width:'calc(100% - 32px)'}} onClick={()=>{setNav('home');setShowForm(true);}}>Enter birth details →</button></div>);
@@ -1448,7 +1414,41 @@ export default function App(){
   return(<>
     <style>{CSS}</style>
     <div className="app">
-      {nav==='home'&&<HomeScreen/>}
+      {nav==='home'&&(<>
+        <div className="hdr">
+          <span className="hdr-icon">✦</span>
+          <div className="hdr-title">Natal AI</div>
+          <div className="hdr-sub">Vedic Astrology · Ancient Wisdom</div>
+        </div>
+        <div className="hist">
+          <span className="hist-icon">📜</span>
+          <span className="hist-text">Vedic astrology is a 5,000-year science of self-discovery from ancient India. Your birth chart is a precise map of your soul's journey — calculated to the minute using Swiss Ephemeris.</span>
+        </div>
+        <div className="wrap">
+          {!chart?(<>
+            <button className="btn-cta" onClick={()=>setShowForm(true)}><span className="btn-cta-icon">✦</span>Discover your birth chart</button>
+            {showForm&&<BirthForm formData={f} setFormData={sf} onSubmit={castChart} loading={casting} error={castErr} placeRes={placeResults} setPlaceRes={setPlaceResults}/>}
+          </>):(
+            <button className="btn-cta" onClick={()=>{setNav('chart');setChartTab('chart');}}><span className="btn-cta-icon">✦</span>View your birth chart</button>
+          )}
+          {panchang&&<div className="today">
+            <div className="today-lbl">Today's Cosmic Energy</div>
+            <div className="today-row">
+              <div className="today-item"><div className="tv">{panchang.moonPhase?.split('·')[0].trim()}</div><div className="tk">Moon Phase</div></div>
+              <div className="today-item"><div className="tv">{panchang.nakName}</div><div className="tk">Lunar Mansion</div></div>
+              <div className="today-item"><div className="tv">{panchang.rahuWindow.split('–')[0].trim()}</div><div className="tk">Shadow Window</div></div>
+            </div>
+          </div>}
+          <div className="feat-grid">
+            <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('chart');}else setShowForm(true)}}><span className="fc-icon">✦</span><div className="fc-name">Birth Chart</div><div className="fc-desc">Sidereal · Vedic</div></div>
+            <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('cycles');}else setShowForm(true)}}><span className="fc-icon">⏳</span><div className="fc-name">Life Cycles</div><div className="fc-desc">Your current period</div></div>
+            <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('influences');}else setShowForm(true)}}><span className="fc-icon">◎</span><div className="fc-name">Influences</div><div className="fc-desc">Planetary patterns</div></div>
+            <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('gifts');}else setShowForm(true)}}><span className="fc-icon">★</span><div className="fc-name">Cosmic Gifts</div><div className="fc-desc">Your strengths</div></div>
+            <div className="fc" onClick={()=>{setNav('more');setMoreScreen('compat');}}><span className="fc-icon">♡</span><div className="fc-name">Compatibility</div><div className="fc-desc">Partner or friend</div></div>
+            <div className="fc hi" onClick={()=>setNav('chat')}><span className="fc-icon">✧</span><div className="fc-name">Ask a Question</div><div className="fc-desc">Chat with your guide</div></div>
+          </div>
+        </div>
+      </>)}
       {nav==='chart'&&<ChartScreen/>}
       {nav==='reading'&&<ReadingScreen/>}
       {nav==='chat'&&<ChatScreen/>}

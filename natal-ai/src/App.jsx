@@ -451,6 +451,135 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 .d9-label{font-size:9.5px;letter-spacing:.14em;color:var(--purpleL);text-transform:uppercase;
   font-weight:600;margin-bottom:8px;text-align:center}
 
+
+/* WELCOME SLIDES */
+.welcome{position:fixed;inset:0;background:#f8f5ff;z-index:200;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px}
+.welcome-skip{position:absolute;top:20px;right:20px;font-size:13px;color:var(--hint);
+  cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent}
+.welcome-icon{font-size:64px;margin-bottom:24px;display:block;text-align:center}
+.welcome-title{font-size:26px;font-weight:700;color:var(--purple2);text-align:center;
+  line-height:1.25;margin-bottom:12px}
+.welcome-desc{font-size:15px;color:var(--muted);text-align:center;line-height:1.75;margin-bottom:28px}
+.welcome-features{width:100%;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.welcome-feat{display:flex;align-items:center;gap:12px;background:var(--card);
+  border:1px solid var(--purpleBorder);border-radius:12px;padding:12px 14px}
+.welcome-feat-icon{font-size:20px;flex-shrink:0}
+.welcome-feat-text{font-size:14px;color:var(--text);font-weight:500}
+.welcome-dots{display:flex;gap:6px;margin-bottom:24px}
+.welcome-dot{width:8px;height:8px;border-radius:50%;background:var(--purpleBorder);transition:all .2s}
+.welcome-dot.on{background:var(--purple);width:22px;border-radius:4px}
+.welcome-btn{width:100%;background:var(--purple);color:white;border:none;border-radius:14px;
+  padding:16px;font-size:16px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.welcome-btn:active{background:var(--purple2)}
+
+/* CONSTELLATION LOADER */
+.constellation-loader{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:40px 20px;min-height:220px}
+.constellation-svg{width:200px;height:150px;margin-bottom:20px}
+.constellation-star{fill:#a78bfa;animation:starPulse 1.5s ease-in-out infinite}
+.constellation-star:nth-child(2){animation-delay:.2s}
+.constellation-star:nth-child(3){animation-delay:.4s}
+.constellation-star:nth-child(4){animation-delay:.6s}
+.constellation-star:nth-child(5){animation-delay:.8s}
+.constellation-star:nth-child(6){animation-delay:1s}
+.constellation-star:nth-child(7){animation-delay:1.2s}
+@keyframes starPulse{0%,100%{opacity:.4}50%{opacity:1}}
+.constellation-line{stroke:#a78bfa;stroke-width:1.2;opacity:0;
+  animation:drawLine 2.5s ease-in-out infinite}
+.constellation-line:nth-child(8){animation-delay:.3s}
+.constellation-line:nth-child(9){animation-delay:.6s}
+.constellation-line:nth-child(10){animation-delay:.9s}
+.constellation-line:nth-child(11){animation-delay:1.2s}
+.constellation-line:nth-child(12){animation-delay:1.5s}
+@keyframes drawLine{0%,100%{opacity:0}40%,70%{opacity:.55}}
+.constellation-text{font-size:14px;font-weight:600;color:var(--purple2);margin-bottom:4px}
+.constellation-sub{font-size:12px;color:var(--hint)}
+
+/* COSMIC CHEMISTRY */
+.cc-hero{border-radius:16px;padding:28px 20px;text-align:center;margin-bottom:16px;
+  position:relative;overflow:hidden}
+.cc-hero.v-stars{background:linear-gradient(160deg,#1a0a2e 0%,#2d1461 60%,#1a0a2e 100%)}
+.cc-hero.v-moon{background:linear-gradient(160deg,#1a1028 0%,#2d2060 60%,#1a1028 100%)}
+.cc-hero.v-waves{background:linear-gradient(160deg,#0a1a2e 0%,#102040 60%,#0a1a2e 100%)}
+.cc-stars-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cc-star-dot{position:absolute;border-radius:50%;background:white;
+  animation:ccTwinkle 2s ease-in-out infinite}
+@keyframes ccTwinkle{0%,100%{opacity:.15}50%{opacity:.9}}
+.cc-verdict-emoji{font-size:36px;margin-bottom:10px;display:block}
+.cc-verdict-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:600;color:rgba(255,255,255,.5);margin-bottom:8px}
+.cc-verdict-text{font-size:22px;font-weight:700;color:white;margin-bottom:8px;line-height:1.2}
+.cc-verdict-sub{font-size:13px;color:rgba(255,255,255,.7);line-height:1.65;max-width:280px}
+.cc-names-badge{display:inline-block;background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);
+  font-size:11px;font-weight:500;padding:4px 14px;border-radius:20px;margin-top:10px}
+.cc-flags-title{font-size:10px;letter-spacing:.16em;color:var(--purpleL);
+  text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.cc-flags{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.cc-flag{border-radius:11px;padding:12px 14px;display:flex;align-items:flex-start;gap:11px}
+.cc-flag.g{border:1px solid rgba(22,163,74,.25);background:rgba(22,163,74,.04)}
+.cc-flag.y{border:1px solid rgba(202,138,4,.25);background:rgba(202,138,4,.04)}
+.cc-flag.r{border:1px solid rgba(220,38,38,.22);background:rgba(220,38,38,.04)}
+.cc-flag-icon{font-size:17px;flex-shrink:0;margin-top:1px}
+.cc-flag-content{flex:1}
+.cc-flag-name{font-size:13px;font-weight:600;color:var(--text)}
+.cc-flag-desc{font-size:11px;color:var(--muted);line-height:1.4;margin-top:2px}
+.cc-flag-badge{display:inline-block;font-size:9.5px;font-weight:600;padding:2px 7px;
+  border-radius:5px;margin-top:4px}
+.cc-flag.g .cc-flag-badge{background:rgba(22,163,74,.1);color:#15803d}
+.cc-flag.y .cc-flag-badge{background:rgba(202,138,4,.1);color:#92400e}
+.cc-flag.r .cc-flag-badge{background:rgba(220,38,38,.08);color:#b91c1c}
+.cc-share-btn{width:100%;background:linear-gradient(135deg,var(--purple),#9333ea);
+  border:none;border-radius:12px;padding:14px;color:white;font-size:14px;
+  font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  gap:8px;margin-top:4px;-webkit-tap-highlight-color:transparent}
+.cc-share-btn:active{opacity:.85}
+
+/* LIFE TIMING */
+.lt-now{background:linear-gradient(135deg,var(--purple),#9333ea);border-radius:14px;
+  padding:16px;color:white;margin-bottom:12px}
+.lt-now-label{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;opacity:.65;margin-bottom:5px}
+.lt-now-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.lt-now-sub{font-size:13px;opacity:.8;margin-bottom:10px;line-height:1.5}
+.lt-now-meaning{font-size:14px;line-height:1.75;opacity:.92}
+.lt-timeline{display:flex;flex-direction:column;gap:0}
+.lt-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--b2)}
+.lt-row:last-child{border-bottom:none}
+.lt-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.lt-dot.curr{background:var(--purple)}
+.lt-dot.future{background:var(--purpleL)}
+.lt-dot.past{background:var(--hint)}
+.lt-row-body{flex:1}
+.lt-row-period{font-size:13px;font-weight:600;color:var(--text)}
+.lt-row-period.curr{color:var(--purple2)}
+.lt-row-dates{font-size:11px;color:var(--hint);margin-top:1px}
+.lt-row-meaning{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}
+.lt-row-tag{display:inline-block;font-size:9.5px;font-weight:600;padding:2px 7px;
+  border-radius:5px;margin-top:4px}
+.lt-row-tag.curr{background:var(--purpleXL);color:var(--purple2)}
+
+/* SHARE SHEET */
+.share-modal{position:fixed;inset:0;z-index:300;background:rgba(10,0,20,.85);
+  display:flex;align-items:flex-end;justify-content:center}
+.share-sheet{background:var(--card);border-radius:20px 20px 0 0;
+  width:100%;max-width:480px;padding:20px 20px 40px}
+.share-handle{width:36px;height:4px;border-radius:2px;background:var(--purpleBorder);
+  margin:0 auto 20px}
+.share-preview{background:linear-gradient(160deg,#1a0a2e,#2d1461);border-radius:14px;
+  padding:20px;text-align:center;margin-bottom:16px;color:white}
+.share-preview-app{font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  opacity:.5;margin-bottom:12px}
+.share-preview-emoji{font-size:40px;display:block;margin-bottom:8px}
+.share-preview-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.share-preview-sub{font-size:13px;opacity:.75}
+.share-actions{display:flex;gap:8px}
+.share-action{flex:1;background:var(--purpleXL);border:1px solid var(--purpleBorder);
+  border-radius:10px;padding:12px;font-size:13px;font-weight:600;color:var(--purple2);
+  cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent}
+.share-action:active{background:var(--purpleBorder)}
+
 @media(max-width:360px){
   .feat-grid{grid-template-columns:1fr 1fr}
   .fc-name{font-size:12px}
@@ -909,7 +1038,7 @@ async function callAI(messages,max_tokens=1000){
   return d.content?.map(b=>b.text||'').join('')||'';
 }
 
-const CHAT_SUGGS=['What does my rising sign say about me?','When will I find love?','What career suits my chart?','Why do I feel stuck right now?','What are my strongest gifts?','How are my 2026 planetary cycles?'];
+const CHAT_SUGGS=['Why do I keep attracting the wrong people?','Is 2026 good for a career change?','Am I in a good period right now?','What does my rising sign really say?','When is my next relationship window?','What are my biggest strengths?'];
 
 // ─── BIRTH FORM (standalone to prevent focus loss on re-render) ─────────────
 async function searchPlacesUtil(query, setResults) {
@@ -979,6 +1108,72 @@ function BirthForm({formData,setFormData,onSubmit,loading,error,placeRes,setPlac
   );
 }
 
+
+// ─── DASHA MEANINGS ──────────────────────────────────────────────────────────
+const DASHA_MEANINGS = {
+  Su:'A period of self-definition and visibility. Your identity steps forward. Career and recognition tend to expand.',
+  Mo:'An inward, emotionally rich period. Intuition heightens, relationships deepen, and the inner world asks for attention.',
+  Ma:'A period of drive and decisive action. Energy is high, ambitions push forward, results come through bold moves.',
+  Ra:'A period of rapid change and transformation. Ambitious, disorienting, and often the most pivotal chapter of life.',
+  Ju:'An expansive, fortunate period. Opportunities multiply, wisdom deepens, and life tends to grow in meaningful ways.',
+  Sa:'A period of discipline and long-term building. Slow but lasting. What you build now tends to endure.',
+  Me:'A period of communication, learning, and mental expansion. Writing, business, and ideas tend to flourish.',
+  Ke:'A spiritual, reflective period. Outer ambition quiets. Inner knowing and detachment bring a different kind of clarity.',
+  Ve:'A period of pleasure, creativity, and connection. Love, beauty, and abundance tend to flow more easily.',
+};
+
+// ─── CONSTELLATION LOADER ────────────────────────────────────────────────────
+function ConstellationLoader({text,sub}){
+  const stars=[
+    {cx:40,cy:110},{cx:65,cy:95},{cx:90,cy:88},{cx:115,cy:92},
+    {cx:130,cy:68},{cx:150,cy:50},{cx:160,cy:30}
+  ];
+  const lines=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]];
+  return(
+    <div className="constellation-loader">
+      <svg className="constellation-svg" viewBox="0 0 200 140">
+        {lines.map(([a,b],i)=>(
+          <line key={i} className="constellation-line"
+            x1={stars[a].cx} y1={stars[a].cy}
+            x2={stars[b].cx} y2={stars[b].cy}/>
+        ))}
+        {stars.map((s,i)=>(
+          <circle key={i} className="constellation-star" cx={s.cx} cy={s.cy} r="3"/>
+        ))}
+      </svg>
+      <div className="constellation-text">{text||'Reading the stars...'}</div>
+      {sub&&<div className="constellation-sub">{sub}</div>}
+    </div>
+  );
+}
+
+// ─── SHARE SHEET ─────────────────────────────────────────────────────────────
+function ShareSheet({emoji,title,sub,onClose}){
+  const doShare=()=>{
+    const txt=emoji+' '+title+'\n'+sub+'\n\nDiscover yours free at natalai.live';
+    if(navigator.share){navigator.share({title:'Natal AI',text:txt}).catch(()=>{});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>alert('Copied!'));}
+    onClose();
+  };
+  return(
+    <div className="share-modal" onClick={onClose}>
+      <div className="share-sheet" onClick={e=>e.stopPropagation()}>
+        <div className="share-handle"/>
+        <div className="share-preview">
+          <div className="share-preview-app">NATAL AI</div>
+          <span className="share-preview-emoji">{emoji}</span>
+          <div className="share-preview-title">{title}</div>
+          <div className="share-preview-sub">{sub}</div>
+        </div>
+        <div className="share-actions">
+          <div className="share-action" onClick={doShare}>Share</div>
+          <div className="share-action" onClick={onClose}>Cancel</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App(){
   const [nav,setNav]=useState('home'); // home|chart|reading|chat|more
@@ -996,6 +1191,8 @@ export default function App(){
   const [expandedCycle,setExpandedCycle]=useState(null);
   const [expandedSub,setExpandedSub]=useState(null);
   const [varshpal,setVarshpal]=useState(null);
+  const [welcomeStep,setWelcomeStep]=useState(1);
+  const [shareData,setShareData]=useState(null);
   const [d9,setD9]=useState(null);
   const [atmakaraka,setAtmakaraka]=useState(null);
   const [varshpalYear,setVarshpalYear]=useState(2026);
@@ -1184,7 +1381,7 @@ export default function App(){
 
       <div style={{padding:'0 16px',marginBottom:10}}>
         <div className="toggle-row">
-          {[['chart','Chart'],['planets','Planets'],['daily','Daily Guide'],['cycles','Life Cycles'],['influences','Influences'],['gifts','Cosmic Gifts'],['transits','Transits'],['varshpal','Year Chart']].map(([id,label])=>(
+          {[['chart','Chart'],['planets','Planets'],['daily','Daily Guide'],['cycles','Life Cycles'],['timing','Life Timing'],['influences','Influences'],['gifts','Cosmic Gifts'],['transits','Transits'],['varshpal','Year Chart']].map(([id,label])=>(
             <div key={id} className={`tg-btn${chartTab===id?' on':''}`} style={{fontSize:10,padding:'7px 2px'}} onClick={()=>setChartTab(id)}>{label}</div>
           ))}
         </div>
@@ -1434,6 +1631,48 @@ export default function App(){
           </>)}
         </>)}
 
+
+        {chartTab==='timing'&&cycles&&(<>
+          <div className="lt-now">
+            <div className="lt-now-label">Your Current Life Chapter</div>
+            <div className="lt-now-title">{FN[cycles.curr.lord]} Chapter</div>
+            <div className="lt-now-sub">{cycles.curr.start.toFixed(1)} — {cycles.curr.end.toFixed(1)} · {DY[cycles.curr.lord]} year period</div>
+            <div className="lt-now-meaning">{DASHA_MEANINGS[cycles.curr.lord]||''}</div>
+          </div>
+          {cycles.curr&&(()=>{
+            const subs=getCycleSubs(cycles.curr.lord,cycles.curr.start,cycles.curr.end);
+            const currSub=subs.find(s=>s.curr);
+            if(!currSub)return null;
+            return(
+              <div className="card">
+                <div className="card-title">Active Sub-Period</div>
+                <div className="card-value">{FN[currSub.lord]}</div>
+                <div className="card-desc">{currSub.start.toFixed(1)} — {currSub.end.toFixed(1)}</div>
+              </div>
+            );
+          })()}
+          <div className="card">
+            <div className="card-title">Your Chapter Timeline</div>
+            <div className="lt-timeline">{cycles.seq.map((d,i)=>{
+              const isPast=d.end<2026.25;
+              const isCurr=cycles.curr?.lord===d.lord&&Math.abs((cycles.curr?.start||0)-d.start)<.01;
+              const isFuture=d.start>2026.25;
+              if(isPast)return null; // only show current + future
+              return(
+                <div key={i} className="lt-row">
+                  <div className={`lt-dot ${isCurr?'curr':'future'}`}/>
+                  <div className="lt-row-body">
+                    <div className={`lt-row-period${isCurr?' curr':''}`}>{FN[d.lord]} Chapter</div>
+                    <div className="lt-row-dates">{Math.round(d.start)} — {Math.round(d.end)} · {DY[d.lord]} years</div>
+                    <div className="lt-row-meaning">{DASHA_MEANINGS[d.lord]||''}</div>
+                    {isCurr&&<span className="lt-row-tag curr">Now</span>}
+                  </div>
+                </div>
+              );
+            })}</div>
+          </div>
+        </>)}
+
         {chartTab==='transits'&&(<>
           <div className="card">
             <div className="card-title">Planets Now vs Your Chart</div>
@@ -1456,55 +1695,93 @@ export default function App(){
 
 
   const CompatScreen=()=>{
-    const setF1=(k,v)=>scf(p=>({...p,[k]:v}));
-    const setF2=(k,v)=>scf2(p=>({...p,[k]:v}));
     if(compatStep===0)return(<>
-      <div className="screen-hdr"><div className="back-btn" onClick={()=>setMoreScreen(null)}>←</div><div className="screen-title">Compatibility</div></div>
+      <div className="screen-hdr"><div className="back-btn" onClick={()=>setMoreScreen(null)}>←</div><div className="screen-title">Cosmic Chemistry</div></div>
       <div className="wrap">
         <div className="compat-intro">
-          <div className="compat-title">Are you compatible?</div>
-          <div className="compat-sub">Enter two birth charts and discover how your energies interact — what you bring to each other, where you complement, and where you might need patience.</div>
+          <div className="compat-title">Is it written in the stars?</div>
+          <div className="compat-sub">Enter two birth charts and discover your cosmic chemistry — what draws you together, where you flow naturally, and where friction may arise.</div>
         </div>
         <div className="compat-type-row">
           <div className={`compat-type${compatType==='partner'?' sel':''}`} onClick={()=>{setCompatType('partner');setCompatStep(1);}}>
-            <span className="ct-icon">♡</span><div className="ct-label">Romantic Partner</div><div className="ct-desc">Love, long-term potential, intimacy</div>
+            <span className="ct-icon">♥</span><div className="ct-label">Romantic Partner</div><div className="ct-desc">Love, long-term chemistry, intimacy</div>
           </div>
           <div className={`compat-type${compatType==='friend'?' sel':''}`} onClick={()=>{setCompatType('friend');setCompatStep(1);}}>
-            <span className="ct-icon">✦</span><div className="ct-label">Friend or Colleague</div><div className="ct-desc">Friendship, work, family</div>
+            <span className="ct-icon">✦</span><div className="ct-label">Friend or Colleague</div><div className="ct-desc">Friendship, energy match, teamwork</div>
           </div>
         </div>
       </div>
     </>);
-    if(compatStep===1)return(<BirthForm formData={cf} setFormData={scf} onSubmit={()=>castCompat(true)} loading={compatLoad} error={compatErr} geoL={cfGeoLoad} placeRes={cfResults} setPlaceRes={setCfResults} title="Person 1 — Birth Details"/>);
-    if(compatStep===2)return(<BirthForm formData={cf2} setFormData={scf2} onSubmit={()=>castCompat(false)} loading={compatLoad} error={compatErr} geoL={cf2GeoLoad} placeRes={cf2Results} setPlaceRes={setCf2Results} title="Person 2 — Birth Details"/>);
+    if(compatStep===1)return(<BirthForm formData={cf} setFormData={scf} onSubmit={()=>castCompat(true)} loading={compatLoad} error={compatErr} placeRes={cfResults} setPlaceRes={setCfResults} title="Person 1 — Birth Details"/>);
+    if(compatStep===2)return(<BirthForm formData={cf2} setFormData={scf2} onSubmit={()=>castCompat(false)} loading={compatLoad} error={compatErr} placeRes={cf2Results} setPlaceRes={setCf2Results} title="Person 2 — Birth Details"/>);
     if(compatStep===3&&compatResult){
-      const score=compatResult.total,max=36,pct=score/max;
-      const color=pct>=0.75?'var(--green)':pct>=0.5?'var(--purple)':'var(--red)';
-      const verdict=pct>=0.75?'Strong Compatibility':pct>=0.6?'Good Compatibility':pct>=0.4?'Some Friction':'Challenging Combination';
+      const pct=compatResult.total/36;
+      const verdict=pct>=0.72
+        ?{text:'Written in the Stars',sub:'Your charts align with rare harmony. The cosmic forces that shaped each of you pull toward each other.',emoji:'✨',theme:'v-stars'}
+        :pct>=0.50
+        ?{text:'Complicated Chemistry',sub:'Real connection with genuine complexity. The friction between you can become something extraordinary if you lean into understanding.',emoji:'🌙',theme:'v-moon'}
+        :{text:'Different Cosmic Frequencies',sub:'Your charts vibrate at very different frequencies. Not impossible — but this connection asks for deep awareness and acceptance.',emoji:'🌊',theme:'v-waves'};
+      const flagType=r=>r>=0.7?'g':r>=0.4?'y':'r';
+      const flagIcon=r=>r>=0.7?'✅':r>=0.4?'⚠️':'🚩';
+      const flagBadge=r=>r>=0.7?'Green Flag':r>=0.4?'Worth Watching':'Red Flag';
+      const FLAG_META=[
+        {n:'Shared Values',d:'Do you want the same things from life?'},
+        {n:'Natural Attraction',d:'The magnetic pull between your charts'},
+        {n:'Wellbeing Together',d:'Physical and emotional compatibility'},
+        {n:'Deep Intimacy',d:'Capacity for personal closeness'},
+        {n:'Mental Chemistry',d:'How your minds meet and understand each other'},
+        {n:'Core Temperament',d:'Whether your natures complement or clash'},
+        {n:'Emotional Harmony',d:'Heart-level resonance and long-term ease'},
+        {n:'Life Energy',d:'Whether your vital forces align for the long run'},
+      ];
+      const n1=cf.name||'Person 1', n2=cf2.name||'Person 2';
+      const dots=Array.from({length:16},(_,i)=>({
+        left:(10+Math.sin(i*2.3)*38+38)+'%',
+        top:(10+Math.cos(i*1.7)*32+38)+'%',
+        sz:Math.sin(i)+1.5,
+        del:(i*0.25%2)+'s'
+      }));
       return(<>
-        <div className="screen-hdr"><div className="back-btn" onClick={()=>setCompatStep(0)}>←</div><div className="screen-title">{compatType==='partner'?'Partner Compatibility':'Friend Compatibility'}</div></div>
+        <div className="screen-hdr"><div className="back-btn" onClick={()=>setCompatStep(0)}>←</div><div className="screen-title">Cosmic Chemistry</div></div>
         <div className="wrap">
-          <div className="card" style={{textAlign:'center'}}>
-            <div className="score-ring" style={{borderColor:color}}>
-              <span className="score-num" style={{color}}>{score}</span>
-              <span className="score-den">/ {max}</span>
+          <div className={`cc-hero ${verdict.theme}`}>
+            <div className="cc-stars-bg">
+              {dots.map((d,i)=><div key={i} className="cc-star-dot" style={{left:d.left,top:d.top,width:d.sz+'px',height:d.sz+'px',animationDelay:d.del}}/>)}
             </div>
-            <div style={{fontSize:18,fontWeight:600,color,marginBottom:6}}>{verdict}</div>
-            <div style={{fontSize:13,color:'var(--muted)',lineHeight:1.6}}>Based on 8 dimensions of astrological compatibility from classical Vedic astrology.</div>
+            <div className="cc-verdict-label">Cosmic Chemistry</div>
+            <div className="cc-verdict-emoji">{verdict.emoji}</div>
+            <div className="cc-verdict-text">{verdict.text}</div>
+            <div className="cc-verdict-sub">{verdict.sub}</div>
+            <div className="cc-names-badge">{n1} • {n2}</div>
           </div>
-          {compatResult.nadiTension&&<div className="match-warn">⚠ Life Energy (Nadi): Your charts share the same energy type — this is worth being mindful of for long-term health and vitality.</div>}
-          {compatResult.energyMismatch&&<div className="match-warn">⚠ Temperament: Very different core temperaments — understanding each others nature deeply will help.</div>}
           <div className="card">
-            <div className="card-title">Compatibility Breakdown</div>
-            <div className="kuta-grid">{compatResult.kutas.map((k,i)=>(
-              <div key={i} className="kuta">
-                <div className="kuta-name">{k.n}</div>
-                <div><span className="kuta-score">{k.s}</span><span className="kuta-max"> / {k.m}</span></div>
-                <div className="kuta-bar"><div className="kuta-fill" style={{width:`${(k.s/k.m)*100}%`,background:k.s/k.m>=0.7?'var(--green)':k.s/k.m>=0.4?'var(--purple)':'var(--red)'}}/></div>
-              </div>
-            ))}</div>
+            <div className="cc-flags-title">The 8 Dimensions</div>
+            <div className="cc-flags">{compatResult.kutas.map((k,i)=>{
+              const r=k.m>0?k.s/k.m:0;
+              return(<div key={i} className={`cc-flag ${flagType(r)}`}>
+                <span className="cc-flag-icon">{flagIcon(r)}</span>
+                <div className="cc-flag-content">
+                  <div className="cc-flag-name">{FLAG_META[i]?.n||k.n}</div>
+                  <div className="cc-flag-desc">{FLAG_META[i]?.d||''}</div>
+                  <span className="cc-flag-badge">{flagBadge(r)}</span>
+                </div>
+              </div>);
+            })}</div>
           </div>
-          <button className="btn-ghost" style={{width:'100%'}} onClick={()=>{setCompatStep(0);setCompatResult(null);scf({name:'',day:'',month:'',year:'',hour:'',min:'',tz:'0',place:'',lat:'',lon:''});scf2({name:'',day:'',month:'',year:'',hour:'',min:'',tz:'0',place:'',lat:'',lon:''});}}>Check Another Pair</button>
+          {(compatResult.nadiTension||compatResult.energyMismatch)&&(
+            <div className="match-warn">
+              {compatResult.nadiTension&&'⚠️ Life energy: You share the same cosmic energy type — traditionally worth being mindful of in long-term partnerships. '}
+              {compatResult.energyMismatch&&'⚠️ Core temperament: Very different natures. Deeply rewarding when understood.'}
+            </div>
+          )}
+          <button className="cc-share-btn" onClick={()=>setShareData({emoji:verdict.emoji,title:verdict.text,sub:n1+' and '+n2})}>
+            ✨ Share Your Chemistry
+          </button>
+          <button className="btn-ghost" style={{width:'100%',marginTop:8}} onClick={()=>{
+            setCompatStep(0);setCompatResult(null);
+            scf({name:'',day:'',month:'',year:'',hour:'',min:'',tz:'0',place:'',lat:'',lon:''});
+            scf2({name:'',day:'',month:'',year:'',hour:'',min:'',tz:'0',place:'',lat:'',lon:''});
+          }}>Check Another Pair</button>
         </div>
       </>);
     }
@@ -1545,7 +1822,7 @@ export default function App(){
       <div className="screen-hdr"><div className="screen-title">More</div></div>
       <div className="wrap">
         <div className="more-list">
-          <div className="more-item" onClick={()=>setMoreScreen('compat')}><span className="more-icon">♡</span><div className="more-text"><div className="more-name">Compatibility</div><div className="more-sub">Are you compatible with your partner or friend?</div></div><span className="more-arr">›</span></div>
+          <div className="more-item" onClick={()=>setMoreScreen('compat')}><span className="more-icon">♡</span><div className="more-text"><div className="more-name">Cosmic Chemistry</div><div className="more-sub">Are you compatible with your partner or friend?</div></div><span className="more-arr">›</span></div>
           <div className="more-item" onClick={()=>setMoreScreen('guidance')}><span className="more-icon">🙏</span><div className="more-text"><div className="more-name">Personal Guidance</div><div className="more-sub">Practices, gemstones and rituals for your chart</div></div><span className="more-arr">›</span></div>
           <div className="more-item" onClick={()=>{setNav('chart');setChartTab('daily')}}><span className="more-icon">📅</span><div className="more-text"><div className="more-name">Daily Cosmic Guide</div><div className="more-sub">Today's energies, shadow window, time quality</div></div><span className="more-arr">›</span></div>
           <div className="more-item" onClick={()=>{setNav('chart');setChartTab('transits')}}><span className="more-icon">🔭</span><div className="more-text"><div className="more-name">Current Transits</div><div className="more-sub">Where the planets are now vs your chart</div></div><span className="more-arr">›</span></div>
@@ -1561,6 +1838,38 @@ export default function App(){
 
   return(<>
     <style>{CSS}</style>
+    {shareData&&<ShareSheet emoji={shareData.emoji} title={shareData.title} sub={shareData.sub} onClose={()=>setShareData(null)}/>}
+    {welcomeStep>0?(
+      <div className="welcome">
+        <div className="welcome-skip" onClick={()=>setWelcomeStep(0)}>Skip</div>
+        {welcomeStep===1&&(<>
+          <span className="welcome-icon">✦</span>
+          <h1 className="welcome-title">Your cosmic blueprint has been here all along</h1>
+          <p className="welcome-desc">At the exact moment you were born, the sky held a precise configuration. Vedic astrology has mapped this science for over 5,000 years.</p>
+          <div className="welcome-dots"><div className="welcome-dot on"/><div className="welcome-dot"/><div className="welcome-dot"/></div>
+          <button className="welcome-btn" onClick={()=>setWelcomeStep(2)}>Continue →</button>
+        </>)}
+        {welcomeStep===2&&(<>
+          <span className="welcome-icon">🌙</span>
+          <h1 className="welcome-title">You are not your Western zodiac sign</h1>
+          <p className="welcome-desc">Most people are surprised to discover their Vedic signs are different. The sidereal zodiac, aligned with actual star positions, tells a more precise story.</p>
+          <div className="welcome-dots"><div className="welcome-dot"/><div className="welcome-dot on"/><div className="welcome-dot"/></div>
+          <button className="welcome-btn" onClick={()=>setWelcomeStep(3)}>Continue →</button>
+        </>)}
+        {welcomeStep===3&&(<>
+          <span className="welcome-icon">🔮</span>
+          <h1 className="welcome-title">What your chart reveals</h1>
+          <div className="welcome-features">
+            <div className="welcome-feat"><span className="welcome-feat-icon">✶</span><span className="welcome-feat-text">Your birth chart and soul chart (D9 Navamsa)</span></div>
+            <div className="welcome-feat"><span className="welcome-feat-icon">⏳</span><span className="welcome-feat-text">Your current life chapter and what it means</span></div>
+            <div className="welcome-feat"><span className="welcome-feat-icon">✦</span><span className="welcome-feat-text">Your nakshatra identity and soul purpose</span></div>
+            <div className="welcome-feat"><span className="welcome-feat-icon">♥</span><span className="welcome-feat-text">Cosmic chemistry with anyone</span></div>
+          </div>
+          <div className="welcome-dots"><div className="welcome-dot"/><div className="welcome-dot"/><div className="welcome-dot on"/></div>
+          <button className="welcome-btn" onClick={()=>setWelcomeStep(0)}>Discover My Chart →</button>
+        </>)}
+      </div>
+    ):(
     <div className="app">
       {nav==='home'&&(<>
         <div className="hdr">
@@ -1592,7 +1901,7 @@ export default function App(){
             <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('cycles');}else setShowForm(true)}}><span className="fc-icon">⏳</span><div className="fc-name">Life Cycles</div><div className="fc-desc">Your current period</div></div>
             <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('influences');}else setShowForm(true)}}><span className="fc-icon">◎</span><div className="fc-name">Influences</div><div className="fc-desc">Planetary patterns</div></div>
             <div className="fc" onClick={()=>{if(chart){setNav('chart');setChartTab('gifts');}else setShowForm(true)}}><span className="fc-icon">★</span><div className="fc-name">Cosmic Gifts</div><div className="fc-desc">Your strengths</div></div>
-            <div className="fc" onClick={()=>{setNav('more');setMoreScreen('compat');}}><span className="fc-icon">♡</span><div className="fc-name">Compatibility</div><div className="fc-desc">Partner or friend</div></div>
+            <div className="fc" onClick={()=>{setNav('more');setMoreScreen('compat');}}><span className="fc-icon">♡</span><div className="fc-name">Cosmic Chemistry</div><div className="fc-desc">Written in the stars?</div></div>
             <div className="fc hi" onClick={()=>setNav('chat')}><span className="fc-icon">✧</span><div className="fc-name">Ask a Question</div><div className="fc-desc">Chat with your guide</div></div>
           </div>
         </div>
@@ -1656,5 +1965,6 @@ export default function App(){
         <div className={`bn${nav==='more'?' act':''}`} onClick={()=>setNav('more')}><span className="bn-icon">≡</span><span className="bn-label">More</span></div>
       </div>
     </div>
+    )}
   </>);
 }

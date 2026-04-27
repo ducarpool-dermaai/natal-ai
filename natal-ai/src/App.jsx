@@ -14,16 +14,13 @@ const CSS = `
 }
 body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;
   -webkit-text-size-adjust:100%;min-height:100vh}
-.app{min-height:100vh;max-width:430px;margin:0 auto;position:relative;background:#f8f5ff}
 body{background:#ddd5f5;min-height:100vh}
+.app{min-height:100vh;width:100%;max-width:430px;margin:0 auto;
+  position:relative;background:#f8f5ff;overflow-x:hidden}
 @media(min-width:431px){
-  body{display:flex;align-items:flex-start;justify-content:center;padding:0}
-  .app{box-shadow:0 0 40px rgba(124,58,237,.18),0 0 0 1px rgba(124,58,237,.12);
-    min-height:100vh;position:relative}
-  .bnav{max-width:430px}
-  .welcome{max-width:430px;left:50%;transform:translateX(-50%)}
-  .share-modal{align-items:center}
-  .share-sheet{max-width:430px;border-radius:20px}
+  .app{box-shadow:0 0 40px rgba(124,58,237,.18),0 0 0 1px rgba(124,58,237,.12)}
+  .share-modal{justify-content:center}
+  .share-sheet{border-radius:20px}
 }
 
 /* HEADER */
@@ -72,7 +69,8 @@ body{background:#ddd5f5;min-height:100vh}
 .fc.hi .fc-desc{color:rgba(255,255,255,.75)}
 
 /* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;
   background:var(--card);border-top:1px solid var(--purpleBorder);
   display:flex;height:62px;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
 .bn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -463,7 +461,8 @@ body{background:#ddd5f5;min-height:100vh}
 
 
 /* WELCOME SLIDES */
-.welcome{position:fixed;inset:0;background:#f8f5ff;z-index:200;
+.welcome{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;background:#f8f5ff;z-index:200;overflow-y:auto;
   display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px}
 .welcome-skip{position:absolute;top:20px;right:20px;font-size:13px;color:var(--hint);
   cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent}

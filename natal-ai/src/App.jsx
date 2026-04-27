@@ -14,7 +14,17 @@ const CSS = `
 }
 body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;
   -webkit-text-size-adjust:100%;min-height:100vh}
-.app{min-height:100vh;max-width:480px;margin:0 auto;position:relative}
+.app{min-height:100vh;max-width:430px;margin:0 auto;position:relative;background:#f8f5ff}
+body{background:#ddd5f5;min-height:100vh}
+@media(min-width:431px){
+  body{display:flex;align-items:flex-start;justify-content:center;padding:0}
+  .app{box-shadow:0 0 40px rgba(124,58,237,.18),0 0 0 1px rgba(124,58,237,.12);
+    min-height:100vh;position:relative}
+  .bnav{max-width:430px}
+  .welcome{max-width:430px;left:50%;transform:translateX(-50%)}
+  .share-modal{align-items:center}
+  .share-sheet{max-width:430px;border-radius:20px}
+}
 
 /* HEADER */
 .hdr{text-align:center;padding:24px 16px 16px}
@@ -1830,7 +1840,7 @@ export default function App(){
         </div>
         <div style={{marginTop:24,textAlign:'center',fontSize:11,color:'var(--hint)'}}>
           <div style={{marginBottom:4}}>Natal AI · Vedic Astrology</div>
-          <div>Swiss Ephemeris · Lahiri Ayanamsa · Brihat Parashara Hora Shastra</div>
+          <div>Meeus Algorithms · Lahiri Ayanamsa · Brihat Parashara Hora Shastra</div>
         </div>
       </div>
     </>);
@@ -1879,12 +1889,18 @@ export default function App(){
         </div>
         <div className="hist">
           <span className="hist-icon">📜</span>
-          <span className="hist-text">Vedic astrology is a 5,000-year science of self-discovery from ancient India. Your birth chart is a precise map of your soul's journey — calculated to the minute using Swiss Ephemeris.</span>
+          <span className="hist-text">Vedic astrology is a 5,000-year science of self-discovery from ancient India. Your birth chart is a precise map of your soul's journey — calculated using precise Meeus astronomical algorithms.</span>
         </div>
         <div className="wrap">
           {!chart?(<>
-            <button className="btn-cta" onClick={()=>setShowForm(true)}><span className="btn-cta-icon">✦</span>Discover your birth chart</button>
-            {showForm&&<BirthForm formData={f} setFormData={sf} onSubmit={castChart} loading={casting} error={castErr} placeRes={placeResults} setPlaceRes={setPlaceResults}/>}
+            {casting?(
+              <ConstellationLoader text="Mapping the sky at your birth..." sub="Calculating planet positions"/>
+            ):(
+              <>
+                <button className="btn-cta" onClick={()=>setShowForm(true)}><span className="btn-cta-icon">✦</span>Discover your birth chart</button>
+                {showForm&&<BirthForm formData={f} setFormData={sf} onSubmit={castChart} loading={casting} error={castErr} placeRes={placeResults} setPlaceRes={setPlaceResults}/>}
+              </>
+            )}
           </>):(
             <button className="btn-cta" onClick={()=>{setNav('chart');setChartTab('chart');}}><span className="btn-cta-icon">✦</span>View your birth chart</button>
           )}

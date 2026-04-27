@@ -414,6 +414,43 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16
 .yr-btn:active{background:var(--purpleXL)}
 .yr-display{font-size:16px;font-weight:600;color:var(--text);flex:1;text-align:center}
 
+
+/* NAK IDENTITY CARD */
+.nak-card{background:#1a0a2e;border-radius:14px;padding:18px 16px;margin-bottom:12px;color:white}
+.nak-emoji{font-size:36px;display:block;margin-bottom:8px}
+.nak-label{font-size:9.5px;letter-spacing:.18em;color:rgba(167,139,250,.7);text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.nak-title{font-size:20px;font-weight:600;color:#e8e0ff;margin-bottom:8px}
+.nak-desc{font-size:14px;line-height:1.75;color:rgba(255,255,255,.7)}
+.nak-keywords{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.nak-kw{background:rgba(124,58,237,.3);color:#c4b5fd;font-size:10px;font-weight:600;
+  padding:3px 10px;border-radius:12px;letter-spacing:.06em;text-transform:uppercase}
+
+/* SOUL PURPOSE CARD */
+.soul-card{background:linear-gradient(135deg,var(--purple),#9333ea);border-radius:14px;
+  padding:16px;margin-bottom:12px;color:white}
+.soul-label{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;opacity:.7;margin-bottom:6px}
+.soul-planet{font-size:16px;font-weight:600;margin-bottom:6px}
+.soul-meaning{font-size:14px;line-height:1.7;opacity:.9}
+
+/* WESTERN VS VEDIC CARD */
+.wv-card{background:var(--card);border:1px solid var(--purpleBorder);border-radius:14px;
+  padding:16px;margin-bottom:12px}
+.wv-title{font-size:10px;letter-spacing:.16em;color:var(--purpleL);text-transform:uppercase;
+  font-weight:600;margin-bottom:12px}
+.wv-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.wv-row:last-child{margin-bottom:0}
+.wv-label{font-size:11px;color:var(--hint);width:32px;flex-shrink:0}
+.wv-western{font-size:13px;color:var(--hint);text-decoration:line-through;flex:1}
+.wv-vedic{font-size:14px;font-weight:600;color:var(--purple2);flex:1}
+.wv-arrow{font-size:12px;color:var(--purpleL)}
+.wv-note{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:10px;
+  padding-top:10px;border-top:1px solid var(--b2)}
+
+/* D9 CHART */
+.d9-label{font-size:9.5px;letter-spacing:.14em;color:var(--purpleL);text-transform:uppercase;
+  font-weight:600;margin-bottom:8px;text-align:center}
+
 @media(max-width:360px){
   .feat-grid{grid-template-columns:1fr 1fr}
   .fc-name{font-size:12px}
@@ -435,7 +472,8 @@ function keplSolve(M,e){let E=M;for(let i=0;i<50;i++){const dE=(M-E+e*Math.sin(E
 function helioXYZ(t,el){const[a0,da,e0,de,i0,di,L0,dL,w0,dw,N0,dN]=el,a=a0+da*t,e=e0+de*t,I=(i0+di*t)*R,L=n360(L0+dL*t)*R,w=n360(w0+dw*t)*R,N=n360(N0+dN*t)*R,om=w-N,M=n360((L-w)*D)*R,Ev=keplSolve(M,e),xp=a*(Math.cos(Ev)-e),yp=a*Math.sqrt(1-e*e)*Math.sin(Ev);const[cN,sN,cI,sI,cO,sO]=[Math.cos(N),Math.sin(N),Math.cos(I),Math.sin(I),Math.cos(om),Math.sin(om)];return{x:(cN*cO-sN*sO*cI)*xp+(-cN*sO-sN*cO*cI)*yp,y:(sN*cO+cN*sO*cI)*xp+(-sN*sO+cN*cO*cI)*yp,z:sO*sI*xp+cO*sI*yp};}
 function planetLon(j,nm){const t=TC(j),p=helioXYZ(t,EL[nm]),e=helioXYZ(t,EL.Earth);return n360(Math.atan2(p.y-e.y,p.x-e.x)*D);}
 function calcLagna(j,lat,lon){const LST=n360(GMST(j)+lon)*R,e=eps(j)*R,phi=lat*R;return n360(Math.atan2(Math.cos(LST),-(Math.sin(LST)*Math.cos(e)+Math.sin(e)*Math.tan(phi)))*D);}
-function computeChart(y,mo,d,h,mi,tz,lat,lon){const utH=h+mi/60-tz,j=JD(y,mo,d,utH),ay=ayanamsa(j);const trop={Sun:sunLon(j),Moon:moonLon(j),Mercury:planetLon(j,'Mercury'),Venus:planetLon(j,'Venus'),Mars:planetLon(j,'Mars'),Jupiter:planetLon(j,'Jupiter'),Saturn:planetLon(j,'Saturn'),Rahu:rahuLon(j),Ketu:n360(rahuLon(j)+180)};const sid={};for(const[k,v]of Object.entries(trop))sid[k]=n360(v-ay);return{sid,lagna:n360(calcLagna(j,lat,lon)-ay),jde:j,ay};}
+function computeChart(y,mo,d,h,mi,tz,lat,lon){const utH=h+mi/60-tz,j=JD(y,mo,d,utH),ay=ayanamsa(j);const trop={Sun:sunLon(j),Moon:moonLon(j),Mercury:planetLon(j,'Mercury'),Venus:planetLon(j,'Venus'),Mars:planetLon(j,'Mars'),Jupiter:planetLon(j,'Jupiter'),Saturn:planetLon(j,'Saturn'),Rahu:rahuLon(j),Ketu:n360(rahuLon(j)+180)};const sid={};for(const[k,v]of Object.entries(trop))sid[k]=n360(v-ay);const tropSun=sunLon(j);
+  return{sid,lagna:n360(calcLagna(j,lat,lon)-ay),jde:j,ay,tropSun};}
 
 // ─── VEDIC DATA ───────────────────────────────────────────────────────────────
 const RE=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
@@ -568,6 +606,100 @@ function getCosmicGifts(sid,lagna){
   return gifts.sort((a,b)=>b.present-a.present);
 }
 
+
+
+// ─── NAKSHATRA IDENTITY PROFILES (Western language) ─────────────────────────
+const NAK_PROFILES = [
+  {title:'The Trailblazer',emoji:'⚡',desc:'You arrived here to initiate. Restless, fearless, and magnetically charged — you sense opportunity before others even notice it exists. Your challenge is learning when to pause.',keywords:['bold','instinctive','pioneering']},
+  {title:'The Catalyst',emoji:'🔥',desc:'Intensity runs through everything you touch. You carry an unspoken knowing about transformation — and you are drawn to edges, thresholds, and the sacred fire of becoming.',keywords:['fierce','magnetic','transformative']},
+  {title:'The Builder',emoji:'⚒',desc:'You have a gift for creating things that last. Methodical and devoted, you build slowly but surely — homes, ideas, relationships — all meant to endure through time.',keywords:['reliable','creative','grounded']},
+  {title:'The Nurturer',emoji:'🌱',desc:'Your presence calms. You absorb the emotional world around you and transmute it into care, nourishment, and growth. Others feel held in your company without knowing why.',keywords:['empathic','devoted','life-giving']},
+  {title:'The Seeker',emoji:'🦌',desc:'Curiosity is your compass. You are drawn toward the new, the undiscovered, the horizon just out of reach. Your gift is finding meaning in movement.',keywords:['curious','gentle','adventurous']},
+  {title:'The Storm',emoji:'🌩',desc:'You arrived in a time of disruption — and you carry that energy. Sharp, brilliant, and sometimes overwhelming, you have the power to cut through illusion.',keywords:['electric','intense','truth-seeking']},
+  {title:'The Restorer',emoji:'🌅',desc:'You have been here before. A natural healer and rebuilder, you know how to bring things back from the edge. Renewal follows wherever you go.',keywords:['resilient','wise','healing']},
+  {title:'The Guardian',emoji:'🛡',desc:'You offer shelter. Protective by instinct, deeply loyal, you create safety for those you love. You feel most alive when you are needed — and most at peace when all is well.',keywords:['protective','loyal','nurturing']},
+  {title:'The Mystic',emoji:'🐍',desc:'Old soul. You see beneath surfaces and sense what others miss. Intensely knowing, you are drawn to depth, mystery, and the hidden architecture of life.',keywords:['perceptive','complex','transformative']},
+  {title:'The Sovereign',emoji:'👑',desc:'You carry authority naturally. Born to lead and be recognized, you have a kingly quality — not of arrogance, but of earned dignity. Others follow your light.',keywords:['noble','commanding','generous']},
+  {title:'The Artist',emoji:'🌹',desc:'Beauty is your language. You are drawn to love, pleasure, and creative expression in every form. Your gifts flourish when you give yourself permission to fully enjoy life.',keywords:['sensual','creative','loving']},
+  {title:'The Benefactor',emoji:'🌟',desc:'Generous, radiant, quietly brilliant — you are the kind of person whose help actually helps. You have a natural gift for seeing what someone truly needs.',keywords:['giving','brilliant','kind']},
+  {title:'The Craftsperson',emoji:'🙌',desc:'Skill is your signature. Patient, precise, and devoted to excellence, you build mastery through repetition. You understand that great work takes time.',keywords:['precise','skilled','devoted']},
+  {title:'The Architect',emoji:'✨',desc:'You see the blueprint others cannot see. Visually gifted and spatially brilliant, you can design and create at a level that surprises even yourself.',keywords:['visionary','artistic','precise']},
+  {title:'The Wanderer',emoji:'💨',desc:'Freedom is non-negotiable for you. Independently minded, intellectually restless, you need space to move, explore, and follow your own wind.',keywords:['free','social','curious']},
+  {title:'The Alchemist',emoji:'🔮',desc:'You understand that opposites must meet. Part scientist, part mystic, you have a rare ability to hold complexity and distill it into something useful.',keywords:['balanced','insightful','transformative']},
+  {title:'The Devoted',emoji:'💫',desc:'Friendship, loyalty, and spiritual connection are your currencies. You love deeply and carefully. You are drawn to those who honor the sacred in everyday life.',keywords:['devoted','spiritual','warm']},
+  {title:'The Elder',emoji:'🦅',desc:'There is a gravitas to you that comes from deep within. You have lived much — and you carry that weight with a quiet dignity that others find anchoring.',keywords:['wise','powerful','discerning']},
+  {title:'The Root',emoji:'🌿',desc:'Your power is in your groundedness. Wild-hearted but deeply rooted, you carry an ancestral wisdom that runs beneath the surface of everything you do.',keywords:['rooted','untamed','ancestral']},
+  {title:'The Visionary',emoji:'🌊',desc:'You live in the water of possibility. Dreamy, creative, and forward-looking, you sense the shape of what is coming before it arrives.',keywords:['intuitive','creative','inspired']},
+  {title:'The Achiever',emoji:'🏆',desc:'Victory calls to you. Disciplined, driven, and quietly ambitious, you have the endurance to outlast almost any challenge that appears in your path.',keywords:['driven','enduring','noble']},
+  {title:'The Listener',emoji:'👂',desc:'You hear what is not said. Sensitive to sound, energy, and emotional nuance, you are the person others seek when they need to feel truly understood.',keywords:['receptive','wise','empathic']},
+  {title:'The Channel',emoji:'🥁',desc:'You are a conduit for something larger than yourself. Rhythmic, expressive, and intensely present, you bring energy into any room you enter.',keywords:['energetic','expressive','magnetic']},
+  {title:'The Healer',emoji:'💊',desc:'You carry ancient medicine. Whether through words, presence, or tangible skill, you have a rare ability to restore what has been broken or lost.',keywords:['healing','precise','compassionate']},
+  {title:'The Pilgrim',emoji:'⚓',desc:'Your life is a journey of meaning-making. Philosophical, adventurous, and spiritually oriented, you are happiest when you feel you are moving toward something true.',keywords:['philosophical','adventurous','deep']},
+  {title:'The Adept',emoji:'🐟',desc:'Depth is your home. Introspective, spiritually mature, and quietly wise, you understand the inner world in ways most people never access.',keywords:['contemplative','serene','wise']},
+  {title:'The Timekeeper',emoji:'🌙',desc:'You understand cycles. Rhythmic, intuitive, and deeply in tune with natural time, you know when to move and when to rest — and you honor both.',keywords:['intuitive','rhythmic','timeless']},
+];
+
+// ─── SOUL PURPOSE (ATMAKARAKA) ────────────────────────────────────────────────
+const SOUL_MEANINGS = {
+  Sun:'Soul of Purpose. You are here to develop authentic self-expression and step fully into your own light.',
+  Moon:'Soul of Feeling. You are here to develop emotional intelligence and learn the alchemy of care.',
+  Mercury:'Soul of Understanding. You are here to develop clarity of mind and become a bridge between worlds.',
+  Venus:'Soul of Beauty. You are here to develop the capacity for love, abundance, and creative joy.',
+  Mars:'Soul of Courage. You are here to develop strength of will and learn when to act and when to be still.',
+  Jupiter:'Soul of Wisdom. You are here to develop integrity and become a teacher, guide, or keeper of meaning.',
+  Saturn:'Soul of Mastery. You are here to develop patience, discipline, and the quiet authority that comes from earned experience.',
+  Rahu:'Soul of Transformation. You are here to step into unfamiliar territory and grow beyond every boundary.',
+};
+
+function getAtmakaraka(sid) {
+  // Atmakaraka = planet with highest degree within its sign (ignoring Rahu/Ketu)
+  const planets = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn'];
+  let maxDeg = -1, atmakaraka = 'Sun';
+  for (const p of planets) {
+    const deg = di(sid[p]); // degree within sign
+    if (deg > maxDeg) { maxDeg = deg; atmakaraka = p; }
+  }
+  return atmakaraka;
+}
+
+function getWesternSign(tropLon) {
+  // Tropical zodiac (no ayanamsa) — Western sun sign
+  return Math.floor(((tropLon % 360) + 360) % 360 / 30);
+}
+
+
+// ─── NAVAMSA (D9) CALCULATION ─────────────────────────────────────────────────
+// Correct navamsa start signs per rashi: [Ar,Ta,Ge,Ca,Le,Vi,Li,Sc,Sa,Ca,Aq,Pi]
+const NAVAMSA_START = [0,9,6,3,0,9,6,3,0,9,6,3]; // 0=Aries,3=Cancer,6=Libra,9=Capricorn
+
+function getNavamsaSign(lon) {
+  const sign = so(lon);
+  const deg = di(lon);
+  const pada = Math.floor(deg / (30/9)); // 0-8
+  return (NAVAMSA_START[sign] + pada) % 12;
+}
+
+function getNavamsaChart(sid) {
+  const d9 = {};
+  for (const [planet, lon] of Object.entries(sid)) {
+    d9[planet] = getNavamsaSign(lon) * 30 + (di(lon) % (30/9)) * 9;
+  }
+  return d9;
+}
+
+// True Node Rahu — Meeus Ch.47 with perturbation corrections (more accurate than mean node)
+function trueRahuLon(j) {
+  const t = TC(j);
+  const om = n360(125.04455501 - 1934.13626197*t + 2.0708e-3*t*t);
+  // 5-term perturbation corrections
+  const corr = 
+    -1.4979*Math.sin((2*(93.272+483202.0175*t))*R) +
+    -0.1500*Math.sin((357.529+35999.050*t)*R) +
+    -0.1226*Math.sin((2*(297.850+445267.111*t))*R) +
+     0.1176*Math.sin((2*om*R)) +
+    -0.0801*Math.sin((2*(134.963+477198.868*t) - om)*R);
+  return n360(om + corr/3600);
+}
 
 // ─── VARSHPAL (SOLAR RETURN) ENGINE ──────────────────────────────────────────
 // Finds exact Julian Day when Sun returns to its natal longitude in target year
@@ -864,6 +996,8 @@ export default function App(){
   const [expandedCycle,setExpandedCycle]=useState(null);
   const [expandedSub,setExpandedSub]=useState(null);
   const [varshpal,setVarshpal]=useState(null);
+  const [d9,setD9]=useState(null);
+  const [atmakaraka,setAtmakaraka]=useState(null);
   const [varshpalYear,setVarshpalYear]=useState(2026);
 
   // Reading
@@ -936,6 +1070,8 @@ export default function App(){
       setTransits(getTransits(c.lagna));
       setInfluences({mars:getMarsInfluence(c.sid,c.lagna),rk:getRahuKetuAxis(c.sid),saturn:getSaturnPassage(c.sid)});
       setGifts(getCosmicGifts(c.sid,c.lagna));
+      setD9(getNavamsaChart(c.sid));
+      setAtmakaraka(getAtmakaraka(c.sid));
       try{setVarshpal(getVarshpal({year:f.year,month:f.month,day:f.day,hour:f.hour,min:f.min,tz:f.tz,lat,lon},2026));}catch(ve){console.log('varshpal err',ve);}
       const pg=getPanchang(j,ay);setPanchang(pg);setChog(getChog(pg.vara));
       setReading('');setMsgs([]);setCompatResult(null);setTransitR('');setGuidance('');
@@ -1057,12 +1193,66 @@ export default function App(){
       <div className="wrap" style={{paddingTop:0}}>
 
         {chartTab==='chart'&&(<>
-          <div className="toggle-row" style={{margin:'0 0 12px'}}>
-            <div className={`tg-btn${chartStyle==='south'?' on':''}`} onClick={()=>setChartStyle('south')}>South Indian</div>
-            <div className={`tg-btn${chartStyle==='north'?' on':''}`} onClick={()=>setChartStyle('north')}>North Indian</div>
+          {/* Western vs Vedic comparison — the "wow moment" for US users */}
+          {chart.tropSun!==undefined&&(()=>{
+            const westernSun=getWesternSign(chart.tropSun);
+            const vedicSun=so(chart.sid.Sun);
+            const westernRising=getWesternSign(chart.lagna+ayanamsa(chart.jde)*0+0); // approx
+            const show=westernSun!==vedicSun;
+            if(!show)return null;
+            return(<div className="wv-card">
+              <div className="wv-title">Your Vedic Signs Differ From Western</div>
+              <div className="wv-row">
+                <span className="wv-label">Sun</span>
+                <span className="wv-western">{RE[westernSun]}</span>
+                <span className="wv-arrow">→</span>
+                <span className="wv-vedic">{RE[vedicSun]}</span>
+              </div>
+              <div className="wv-row">
+                <span className="wv-label">Rising</span>
+                <span className="wv-western">~{RE[(so(chart.lagna)+1)%12]}</span>
+                <span className="wv-arrow">→</span>
+                <span className="wv-vedic">{RE[so(chart.lagna)]}</span>
+              </div>
+              <div className="wv-note">Vedic astrology uses the sidereal zodiac — aligned with actual star positions. Western astrology uses the tropical zodiac. This ~24° difference shifts most signs back by one. Vedic tends to be more precise for life timing.</div>
+            </div>);
+          })()}
+
+          {/* D1 Birth Chart */}
+          <div className="chart-svg-wrap">
+            <div className="d9-label">D1 · Birth Chart</div>
+            <ChartSVG sid={chart.sid} lagna={chart.lagna}/>
           </div>
-          <div className="chart-svg-wrap"><ChartSVG sid={chart.sid} lagna={chart.lagna}/></div>
-          <div style={{textAlign:'center',fontSize:11,color:'var(--hint)',marginBottom:16}}>Lahiri Ayanamsa {chart.ay.toFixed(2)}° · Whole Sign · Sidereal</div>
+
+          {/* D9 Navamsa Chart */}
+          {d9&&(<div className="chart-svg-wrap" style={{marginTop:12}}>
+            <div className="d9-label">D9 · Soul Chart (Navamsa)</div>
+            <ChartSVG sid={d9} lagna={chart.lagna}/>
+          </div>)}
+
+          <div style={{textAlign:'center',fontSize:11,color:'var(--hint)',marginBottom:8}}>
+            Meeus algorithms · Lahiri Ayanamsa {chart.ay.toFixed(2)}° · Whole Sign
+          </div>
+
+          {/* Nakshatra Identity */}
+          {(()=>{const nak=no(chart.sid.Moon),p=NAK_PROFILES[nak];return p?(
+            <div className="nak-card">
+              <span className="nak-label">Your Birth Star — {NK[nak]}</span>
+              <span className="nak-emoji">{p.emoji}</span>
+              <div className="nak-title">{p.title}</div>
+              <div className="nak-desc">{p.desc}</div>
+              <div className="nak-keywords">{p.keywords.map((k,i)=><span key={i} className="nak-kw">{k}</span>)}</div>
+            </div>
+          ):null;})()}
+
+          {/* Soul Purpose — Atmakaraka */}
+          {atmakaraka&&SOUL_MEANINGS[atmakaraka]&&(
+            <div className="soul-card">
+              <div className="soul-label">Your Soul Planet</div>
+              <div className="soul-planet">{atmakaraka} · {SOUL_MEANINGS[atmakaraka].split('.')[0]}</div>
+              <div className="soul-meaning">{SOUL_MEANINGS[atmakaraka]}</div>
+            </div>
+          )}
         </>)}
 
         {chartTab==='planets'&&(<div className="card">

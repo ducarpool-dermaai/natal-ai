@@ -1,0 +1,16 @@
+{
+  "name": "Natal AI — Vedic Astrology",
+  "short_name": "Natal AI",
+  "description": "Free AI-powered Vedic astrology. Natal chart, life cycles, compatibility and personalised readings.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f5ff",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "lang": "en-US",
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"},
+    {"src": "/star.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}
